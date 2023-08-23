@@ -9,31 +9,23 @@ import Button from "../../ui/Button";
 import FileInput from "../../ui/FileInput";
 import Textarea from "../../ui/Textarea";
 import FormRow from "../../ui/FormRow";
+import { useUpdateCabin } from "./useUpdateCabin";
 
 function UpdateCabinForm({ cabinToEdit = {} }) {
+  const { isUpdating, updateCabin } = useUpdateCabin();
   const { id: editId, ...editValues } = cabinToEdit;
 
   const { register, handleSubmit, reset, getValues, formState } = useForm({
     defaultValues: editId ? editValues : {},
   });
   const { errors } = formState;
-  const queryClient = useQueryClient();
 
-  const { mutate, isLoading: isUpdating } = useMutation({
-    mutationFn: ({ newCabinData, id }) => updateCabin(newCabinData, id),
-    onSuccess: () => {
-      toast.success("New cabin successfully updated");
-      queryClient.invalidateQueries({ queryKey: ["cabins"] });
-      reset();
-    },
-    onError: (error) => toast.error(error.message)
-  });
 
   function onSubmit(data) {
     const image = typeof data.image === "string" ? data.image : data.image[0];
 
     console.log("data:", { ...data, image });
-    mutate({ newCabinData: { ...data, image }, id: editId });
+    updateCabin({ newCabinData: { ...data, image }, id: editId }, { onSuccess: reset() });
   };
 
   function onError(errors) {

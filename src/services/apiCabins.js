@@ -17,9 +17,6 @@ export async function createCabin(newCabin) {
     const imageName = `${Math.random()}-${newCabin.image.name}`.replaceAll("/", "");
     const imagePath = `${supabaseUrl}/storage/v1/object/public/cabin-images/${imageName}`
 
-    console.log("image name", imageName);
-    console.log("image path", imagePath);
-
     // Create cabin
     const { data, error } = await supabase
         .from('cabins')
@@ -54,7 +51,6 @@ export async function updateCabin(newCabin, id) {
 
     const imageName = `${Math.random()}-${newCabin.image.name}`.replaceAll("/", "");
     const imagePath = hasImagePath ? newCabin.image : `${supabaseUrl}/storage/v1/object/public/cabin-images/${imageName}`
-
 
     // Update cabin
     const { data, error } = await supabase

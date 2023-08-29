@@ -11,7 +11,7 @@ import Textarea from "../../ui/Textarea";
 import FormRow from "../../ui/FormRow";
 import { useUpdateCabin } from "./useUpdateCabin";
 
-function UpdateCabinForm({ cabinToEdit = {} }) {
+function UpdateCabinForm({ cabinToEdit = {}, onCloseModal }) {
   const { isUpdating, updateCabin } = useUpdateCabin();
   const { id: editId, ...editValues } = cabinToEdit;
 
@@ -82,7 +82,11 @@ function UpdateCabinForm({ cabinToEdit = {} }) {
 
       <FormRow>
         {/* type is an HTML attribute! */}
-        <Button variation="secondary" type="reset">
+        <Button 
+        variation="secondary" 
+        type="reset"
+        onClick={onCloseModal}
+        >
           Cancel
         </Button>
         <Button disabled={isUpdating}>Edit cabin</Button>

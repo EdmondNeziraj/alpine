@@ -25,7 +25,12 @@ function UpdateCabinForm({ cabinToEdit = {}, onCloseModal }) {
     const image = typeof data.image === "string" ? data.image : data.image[0];
 
     console.log("data:", { ...data, image });
-    updateCabin({ newCabinData: { ...data, image }, id: editId }, { onSuccess: reset() });
+    updateCabin({ newCabinData: { ...data, image }, id: editId }, {
+      onSuccess: () => {
+        reset();
+        onCloseModal?.()
+      }
+    });
   };
 
   function onError(errors) {
@@ -82,10 +87,10 @@ function UpdateCabinForm({ cabinToEdit = {}, onCloseModal }) {
 
       <FormRow>
         {/* type is an HTML attribute! */}
-        <Button 
-        variation="secondary" 
-        type="reset"
-        onClick={onCloseModal}
+        <Button
+          variation="secondary"
+          type="reset"
+          onClick={onCloseModal}
         >
           Cancel
         </Button>

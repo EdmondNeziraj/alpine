@@ -5,7 +5,7 @@ export async function getBookings({ filter, sortBy }) {
     let query = supabase
         .from("bookings")
         .select(
-            "*, cabins(name), guests(fullName, email)"
+            "*, cabins(name), guests(fullName, email)",
         )
 
     // filter

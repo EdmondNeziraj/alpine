@@ -36,6 +36,9 @@ function CheckinBooking() {
         setConfirmPaid(booking?.isPaid || false)
     }, [booking])
 
+    if (isLoading || isCheckingin || isLoadingSettings) return <Spinner />
+
+
     const {
         id: bookingId,
         guests,
@@ -45,7 +48,7 @@ function CheckinBooking() {
         numNights,
     } = booking;
 
-    const optionalBreakfast = settings.breakfastPrice * numGuests * numNights;
+    const optionalBreakfast = settings.breakfastPrice ? settings.breakfastPrice * numGuests * numNights : 0;
 
     function handleCheckin() {
         if (!confirmPaid) return;
@@ -62,8 +65,6 @@ function CheckinBooking() {
             checkin({ bookingId, breakfast: {} });
         }
     }
-
-    if (isLoading || isLoadingSettings) return <Spinner />
 
     return (
         <>

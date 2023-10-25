@@ -31,7 +31,7 @@ function BookingDetail() {
     const moveBack = useMoveBack();
     const navigate = useNavigate();
 
-    if (isLoading) return <Spinner />
+    if (isLoading || isCheckingOut || isDeleting) return <Spinner />
 
     const { status, id: bookingId } = booking;
 

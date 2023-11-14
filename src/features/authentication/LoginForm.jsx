@@ -7,8 +7,8 @@ import SpinnerMini from "../../ui/FormRow";
 import { useLogin } from "./useLogin";
 
 function LoginForm() {
-    const [email, setEmail] = useState("edmond@gmail.com");
-    const [password, setPassword] = useState("edmond");
+    const [email, setEmail] = useState("pomagi7357@rdluxe.com");
+    const [password, setPassword] = useState("pomagi7357");
     const { login, isLoading } = useLogin();
 
     function handleSubmit(e) {
@@ -25,11 +25,11 @@ function LoginForm() {
 
     return (
         <Form onSubmit={handleSubmit}>
+            <div style={{color: "red"}}>This is an example email! </div>
             <FormRow label="Email address">
                 <Input
                     type="email"
                     id="email"
-                    // This makes this form better for password managers
                     autoComplete="username"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}

@@ -16,7 +16,6 @@ import Booking from "./pages/Booking";
 import Checkin from "./pages/Checkin";
 import ProtectedRoute from "./ui/ProtectedRoute";
 import { DarkModeProvider } from "./context/DarkModeContext";
-// import "dotenv/config";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -27,11 +26,9 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-	console.log(`DB NAME:  ${process.env.REACT_APP_SUPABASE_KEY}`);
 	return (
 		<DarkModeProvider>
 			<QueryClientProvider client={queryClient}>
-				{/* <ReactQueryDevtools initialIsOpen={false} /> */}
 				<GlobalStyles />
 				<BrowserRouter>
 					<Routes>

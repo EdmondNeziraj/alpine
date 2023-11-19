@@ -35,7 +35,7 @@ const PaginationButton = styled.button`
 
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; 
   gap: 0.4rem;
   padding: 0.6rem 1.2rem;
   transition: all 0.3s;
